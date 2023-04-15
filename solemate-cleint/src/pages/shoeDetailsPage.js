@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
 import DeleteShoe from "../components/deleteShoe";
 import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
 
 
 function ShoeDetailsPage() {
@@ -12,11 +13,18 @@ function ShoeDetailsPage() {
     const [alertText, setAlertText] = useState();
     const [shoe, setShoe] = useState();
     const [owner, setOwner] = useState();
+    const [updateShown, setUpdateShown] = useState();
 
     const API_URL = 'http://localhost:5005';
-    const { getToken } = useContext(AuthContext);
+    const { getToken, getUser } = useContext(AuthContext);
     const { id } = useParams();
 
+    const navigate = useNavigate();
+
+    const handleUpdateClick = (e) => {
+        e.preventDefault();
+        navigate(`/edit-shoe/${id}`)
+    }
 
     useEffect(() => {
         axios
@@ -32,6 +40,12 @@ function ShoeDetailsPage() {
                     .then((response) => {
                         console.log('owner', response.data);
                         setOwner(response.data);
+                    })
+                    .then(() => {
+                        const userId = getUser()._id;
+                        if (userId == ownerId) {
+                            setUpdateShown(true);
+                        }
                     })
                     .catch((error) => {
                         console.log(error);
@@ -54,6 +68,11 @@ function ShoeDetailsPage() {
                 </Alert>
             </div>
             {shoe && (<div>
+                <div hidden={!updateShown}>
+                    <Button variant="primary" onClick={handleUpdateClick}>
+                        Update Shoe
+                    </Button>
+                </div>
                 <DeleteShoe ownerId={shoe.owner} shoeId={shoe._id} />
                 <p>shoe Brand :{shoe.brand}</p>
                 <p>Model: {shoe.model}</p>

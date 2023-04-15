@@ -5,6 +5,7 @@ import React, { useState, useContext, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
+import Image from 'react-bootstrap/Image';
 
 function AddShoePage() {
     const [alertShown, setAlertShown] = useState(false);
@@ -82,6 +83,7 @@ function AddShoePage() {
                         Upload
                     </Button>
                 </Form.Group>
+                <Image src={imageUrl} fluid />
                 <Form.Group>
                     <Form.Label>Brand:</Form.Label>
                     <Form.Control type="text"
