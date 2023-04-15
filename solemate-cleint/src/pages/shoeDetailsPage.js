@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate, useParams } from 'react-router-dom';
+import Image from 'react-bootstrap/Image';
 
 function ShoeDetailsPage() {
     const [shoe, setShoe] = useState();
@@ -49,7 +50,7 @@ function ShoeDetailsPage() {
                 <p>{shoe.description}</p>
                 <p>{shoe.size}</p>
                 <p>{shoe.price}</p>
-                <p>{shoe.imageUrl}</p>
+                <Image src={shoe.imageUrl} fluid />
                 {owner && <p>{owner.name}</p>}
             </div>)}
         </div>

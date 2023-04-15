@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-const API_URL = "http://localhost:5005";
+import React, { useState } from "react";
+import jwt from 'jwt-decode';
 
 const AuthContext = React.createContext();
 
@@ -17,6 +16,21 @@ function AuthProviderWrapper(props) {
         return localStorage.getItem('authToken');
     }
 
+    const getUser = () => {
+        if (user)
+            return user;
+        else {
+            const decodedToken = jwt(getToken());
+            setUser(decodedToken);
+            return decodedToken;
+        }
+    }
+
+    const logout = () => {
+        setUser(null);
+        localStorage.removeItem('authToken');
+    }
+
     return (
         <AuthContext.Provider
             value={{
@@ -25,6 +39,7 @@ function AuthProviderWrapper(props) {
                 user,
                 storeToken,
                 getToken,
+                getUser,
             }}
         >
             {props.children}
