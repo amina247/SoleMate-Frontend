@@ -1,10 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
+import DeleteShoe from "../components/deleteShoe";
+import Alert from 'react-bootstrap/Alert';
+
 
 function ShoeDetailsPage() {
+    const [alertShown, setAlertShown] = useState(false);
+    const [alertText, setAlertText] = useState();
     const [shoe, setShoe] = useState();
     const [owner, setOwner] = useState();
 
@@ -15,7 +20,7 @@ function ShoeDetailsPage() {
 
     useEffect(() => {
         axios
-            .get(`${API_URL}/api/shoes/${id}`, {}, { headers: { 'authorization': `Bearer ${getToken()}` } })
+            .get(`${API_URL}/api/shoes/${id}`, { headers: { 'authorization': `Bearer ${getToken()}` } })
             .then((response) => {
                 console.log('shoe', response.data);
                 setShoe(response.data);
@@ -35,15 +40,21 @@ function ShoeDetailsPage() {
             })
             .catch((error) => {
                 console.log(error);
-                // setAlertShown(true);
-                // setAlertText(error.response.data.message);
+                setAlertShown(true);
+                setAlertText(error.response.data.message);
             });
 
     }, []);
     return (
         <div>
             <h1>Shoe Details Page</h1>
+            <div hidden={!alertShown}>
+                <Alert key={"danger"} variant={"danger"}>
+                    {alertText}
+                </Alert>
+            </div>
             {shoe && (<div>
+                <DeleteShoe ownerId={shoe.owner} shoeId={shoe._id} />
                 <p>shoe Brand :{shoe.brand}</p>
                 <p>Model: {shoe.model}</p>
                 <p>{shoe.createdAt}</p>

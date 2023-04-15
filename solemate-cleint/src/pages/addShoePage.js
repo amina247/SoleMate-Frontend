@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 
-function AddShoe() {
+function AddShoePage() {
     const [alertShown, setAlertShown] = useState(false);
     const [alertText, setAlertText] = useState();
     const [brand, setBrand] = useState();
@@ -117,4 +117,4 @@ function AddShoe() {
 
 }
 
-export default AddShoe;
+export default AddShoePage;
