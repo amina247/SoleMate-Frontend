@@ -13,6 +13,10 @@ function AuthProviderWrapper(props) {
         localStorage.setItem('authToken', token);
     }
 
+    const getToken = () => {
+        return localStorage.getItem('authToken');
+    }
+
     return (
         <AuthContext.Provider
             value={{
@@ -20,6 +24,7 @@ function AuthProviderWrapper(props) {
                 isLoading,
                 user,
                 storeToken,
+                getToken,
             }}
         >
             {props.children}
