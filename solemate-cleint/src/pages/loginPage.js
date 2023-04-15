@@ -4,11 +4,19 @@ import Button from 'react-bootstrap/Button';
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from "../context/auth.context";
+import { useNavigate } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
+
+
 
 function LoginPage() {
     const { storeToken } = useContext(AuthContext);
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const navigate = useNavigate();
+    const [alertShown, setAlertShown] = useState(false);
+    const [alertText, setAlertText] = useState();
+
 
     const API_URL = 'http://localhost:5005';
 
@@ -25,9 +33,13 @@ function LoginPage() {
                 console.log('JWT token', response.data.authToken);
 
                 storeToken(response.data.authToken);
+                navigate('/');
             })
-            .catch((error) => console.log(error));
-
+            .catch((error) => {
+                console.log(error);
+                setAlertShown(true);
+                setAlertText(error.response.data.message);
+            });
     }
 
     return (
@@ -37,6 +49,11 @@ function LoginPage() {
             padding: 30
         }}>
             <h4>Login Here!</h4>
+            <div hidden={!alertShown}>
+                <Alert key={"danger"} variant={"danger"}>
+                    {alertText}
+                </Alert>
+            </div>
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Enter your email address:</Form.Label>

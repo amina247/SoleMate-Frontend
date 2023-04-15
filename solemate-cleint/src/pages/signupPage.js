@@ -3,12 +3,19 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
+
+
 
 function SignUpPage() {
     const API_URL = 'http://localhost:5005';
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [name, setName] = useState();
+    const [alertShown, setAlertShown] = useState(false);
+    const [alertText, setAlertText] = useState();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,9 +24,13 @@ function SignUpPage() {
         axios
             .post(`${API_URL}/auth/signup`, requestBody)
             .then((response) => {
-                console.log('resp', response);
+                navigate('/login');
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {
+                console.log(error);
+                setAlertShown(true);
+                setAlertText(error.response.data.message);
+            });
 
     }
 
@@ -30,6 +41,11 @@ function SignUpPage() {
             padding: 30
         }}>
             <h4>Sign Up Here!</h4>
+            <div hidden={!alertShown}>
+                <Alert key={"danger"} variant={"danger"}>
+                    {alertText}
+                </Alert>
+            </div>
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Enter your full name:</Form.Label>
