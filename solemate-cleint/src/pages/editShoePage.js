@@ -18,6 +18,7 @@ function EditShoePage() {
     const [size, setSize] = useState();
     const [price, setPrice] = useState();
     const [imageUrl, setImageUrl] = useState();
+    const [forSale, setForSale] = useState();
 
     const { id: shoeId } = useParams();
 
@@ -32,7 +33,7 @@ function EditShoePage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const owner = getUser()._id;
-        const requestBody = { brand, model, description, size, price, imageUrl, owner };
+        const requestBody = { brand, model, description, size, price, imageUrl, owner, forSale };
 
         axios
             .put(`${API_URL}/api/shoes/${shoeId}`, requestBody, { headers: { 'authorization': `Bearer ${getToken()}` } })
@@ -76,6 +77,7 @@ function EditShoePage() {
                 setSize(response.data.size);
                 setPrice(response.data.price);
                 setImageUrl(response.data.imageUrl);
+                setForSale(response.data.forSale);
             })
             .catch((error) => {
                 console.log(error);
@@ -110,6 +112,11 @@ function EditShoePage() {
                         </Button>
                     </Form.Group>
                     <Image src={imageUrl} fluid />
+                    <Form.Group>
+                        <Form.Label>For Sale:</Form.Label>
+                        <Form.Check type="checkbox" checked={forSale}
+                            onChange={() => setForSale(!forSale)} />
+                    </Form.Group>
                     <Form.Group>
                         <Form.Label>Brand:</Form.Label>
                         <Form.Control type="text"

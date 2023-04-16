@@ -7,6 +7,7 @@ import DeleteShoe from "../components/deleteShoe";
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import NavigationBar from "../components/navBar";
+import SendOffer from "../components/sendOffer";
 
 
 function ShoeDetailsPage() {
@@ -77,9 +78,11 @@ function ShoeDetailsPage() {
                     </Button>
                 </div>
                 <DeleteShoe ownerId={shoe.owner} shoeId={shoe._id} />
+                <SendOffer ownerId={shoe.owner} shoe={shoe} />
                 <p>shoe Brand :{shoe.brand}</p>
                 <p>Model: {shoe.model}</p>
                 <p>{shoe.createdAt}</p>
+                <p>{shoe.forSale.toString()}</p>
                 <p>{shoe.description}</p>
                 <p>{shoe.size}</p>
                 <p>{shoe.price}</p>

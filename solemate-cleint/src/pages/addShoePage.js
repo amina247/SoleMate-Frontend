@@ -16,6 +16,7 @@ function AddShoePage() {
     const [description, setDescription] = useState();
     const [size, setSize] = useState();
     const [price, setPrice] = useState();
+    const [forSale, setForSale] = useState(false);
     const [imageUrl, setImageUrl] = useState();
 
     const cloudinaryref = useRef();
@@ -29,7 +30,7 @@ function AddShoePage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const owner = getUser()._id;
-        const requestBody = { brand, model, description, size, price, imageUrl, owner };
+        const requestBody = { brand, model, description, size, price, imageUrl, owner, forSale };
 
         axios
             .post(`${API_URL}/api/shoes`, requestBody, { headers: { 'authorization': `Bearer ${getToken()}` } })
@@ -88,6 +89,11 @@ function AddShoePage() {
                 </Form.Group>
                 <Image src={imageUrl} fluid />
                 <Form.Group>
+                    <Form.Label>For Sale:</Form.Label>
+                    <Form.Check type="checkbox" checked={forSale}
+                        onChange={() => setForSale(!forSale)} />
+                </Form.Group>
+                <Form.Group>
                     <Form.Label>Brand:</Form.Label>
                     <Form.Control type="text"
                         onChange={(event) => setBrand(event.target.value)} />
@@ -104,12 +110,12 @@ function AddShoePage() {
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Size:</Form.Label>
-                    <Form.Control type="text"
+                    <Form.Control type="number"
                         onChange={(event) => setSize(event.target.value)} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Price:</Form.Label>
-                    <Form.Control type="text"
+                    <Form.Control type="number"
                         onChange={(event) => setPrice(event.target.value)} />
                 </Form.Group>
                 <Button variant="primary" type="submit">
