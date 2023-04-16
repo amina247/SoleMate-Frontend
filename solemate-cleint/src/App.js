@@ -8,8 +8,8 @@ import LoginPage from "./pages/loginPage";
 import ShoeDetailsPage from "./pages/shoeDetailsPage";
 import AddShoePage from "./pages/addShoePage";
 import EditShoePage from "./pages/editShoePage";
+import ShoeListPage from "./pages/shoeListPage";
 
-// cld-sample-5
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
         <Route path="/shoe-details/:id" element={<ShoeDetailsPage />} />
         <Route path="/add-shoe" element={<AddShoePage />} />
         <Route path="/edit-shoe/:id" element={<EditShoePage />} />
+        <Route path="/shoe-list" element={<ShoeListPage />} />
       </Routes>
     </div>
   );
