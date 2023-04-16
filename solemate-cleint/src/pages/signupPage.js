@@ -68,6 +68,7 @@ function SignUpPage() {
                     Click here to sign up!
                 </Button>
             </Form>
+            <p>already a user? <a href='/login'>Login Here</a></p>
         </div>
     );
 }
