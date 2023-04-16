@@ -6,6 +6,7 @@ import Image from 'react-bootstrap/Image';
 import DeleteShoe from "../components/deleteShoe";
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
+import NavigationBar from "../components/navBar";
 
 
 function ShoeDetailsPage() {
@@ -61,6 +62,8 @@ function ShoeDetailsPage() {
     }, []);
     return (
         <div>
+            <NavigationBar />
+
             <h1>Shoe Details Page</h1>
             <div hidden={!alertShown}>
                 <Alert key={"danger"} variant={"danger"}>

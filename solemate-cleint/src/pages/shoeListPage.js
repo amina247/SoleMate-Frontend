@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
 import Alert from 'react-bootstrap/Alert';
+import NavigationBar from "../components/navBar";
 
 
 function ShoeListPage() {
@@ -31,6 +32,8 @@ function ShoeListPage() {
     }, []);
     return (
         <div>
+            <NavigationBar />
+
             <h1>Shoe Collection</h1>
             <div hidden={!alertShown}>
                 <Alert key={"danger"} variant={"danger"}>

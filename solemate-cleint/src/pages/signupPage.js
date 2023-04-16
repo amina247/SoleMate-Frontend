@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
+import NavigationBar from '../components/navBar';
 
 
 
@@ -40,6 +41,8 @@ function SignUpPage() {
             width: 700,
             padding: 30
         }}>
+            <NavigationBar />
+
             <h4>Sign Up Here!</h4>
             <div hidden={!alertShown}>
                 <Alert key={"danger"} variant={"danger"}>

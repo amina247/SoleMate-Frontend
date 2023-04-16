@@ -4,8 +4,6 @@ import jwt from 'jwt-decode';
 const AuthContext = React.createContext();
 
 function AuthProviderWrapper(props) {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
 
     const storeToken = (token) => {
@@ -26,6 +24,13 @@ function AuthProviderWrapper(props) {
         }
     }
 
+    const getIsLoggedIn = () => {
+        if (localStorage.getItem('authToken'))
+            return true;
+        else
+            return false;
+    }
+
     const logout = () => {
         setUser(null);
         localStorage.removeItem('authToken');
@@ -34,12 +39,12 @@ function AuthProviderWrapper(props) {
     return (
         <AuthContext.Provider
             value={{
-                isLoggedIn,
-                isLoading,
+                getIsLoggedIn,
                 user,
                 storeToken,
                 getToken,
                 getUser,
+                logout,
             }}
         >
             {props.children}

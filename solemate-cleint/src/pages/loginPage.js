@@ -6,6 +6,7 @@ import axios from 'axios';
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
+import NavigationBar from '../components/navBar';
 
 
 
@@ -48,6 +49,8 @@ function LoginPage() {
             width: 700,
             padding: 30
         }}>
+            <NavigationBar />
+
             <h4>Login Here!</h4>
             <div hidden={!alertShown}>
                 <Alert key={"danger"} variant={"danger"}>

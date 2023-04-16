@@ -1,4 +1,5 @@
 import { AuthContext } from "../context/auth.context";
+import NavigationBar from "../components/navBar";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import React, { useState, useContext, useRef, useEffect } from 'react';
@@ -91,6 +92,8 @@ function EditShoePage() {
             width: 700,
             padding: 30
         }}>
+            <NavigationBar />
+
             <h4>Edit Shoe</h4>
             <div hidden={!alertShown}>
                 <Alert key={"danger"} variant={"danger"}>
