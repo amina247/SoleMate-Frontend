@@ -1,14 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import NavigationBar from '../components/navBar';
-
-
+import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 
 function LoginPage() {
     const { storeToken } = useContext(AuthContext);
@@ -17,7 +13,6 @@ function LoginPage() {
     const navigate = useNavigate();
     const [alertShown, setAlertShown] = useState(false);
     const [alertText, setAlertText] = useState();
-
 
     const API_URL = 'http://localhost:5005';
 
@@ -44,34 +39,34 @@ function LoginPage() {
     }
 
     return (
-        <div style={{
-            display: 'block',
-            width: 700,
-            padding: 30
-        }}>
+        <MDBContainer fluid>
             <NavigationBar />
+            <MDBRow className='d-flex justify-content-center align-items-center vh-100'>
+                <MDBCol col='12'>
+                    <MDBCard className='bg-white my-5 mx-auto' style={{ borderRadius: '1rem', maxWidth: '500px' }}>
+                        <MDBCardBody className='p-5 w-100 d-flex flex-column'>
+                            <h2 className="fw-bold mb-2 text-center">Login</h2>
+                            <p className="text-dark-50 mb-3">Please enter your login and password!</p>
 
-            <h4>Login Here!</h4>
-            <div hidden={!alertShown}>
-                <Alert key={"danger"} variant={"danger"}>
-                    {alertText}
-                </Alert>
-            </div>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Enter your email address:</Form.Label>
-                    <Form.Control type="email"
-                        placeholder="Enter your your email address" onChange={(event) => setEmail(event.target.value)} />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Enter your password:</Form.Label>
-                    <Form.Control type="password" placeholder="Enter your password" onChange={(event) => setPassword(event.target.value)} />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Click here to login!
-                </Button>
-            </Form>
-        </div>
+                            <div hidden={!alertShown}>
+                                <Alert key={"danger"} variant={"danger"}>
+                                    {alertText}
+                                </Alert>
+                            </div>
+
+                            <form onSubmit={handleSubmit}>
+                                <MDBInput wrapperClass='mb-4 w-100' label='Email address' id='formControlLg' type='email' size="lg" onChange={(event) => setEmail(event.target.value)} />
+                                <MDBInput wrapperClass='mb-4 w-100' label='Password' id='formControlLg' type='password' size="lg" onChange={(event) => setPassword(event.target.value)} />
+                                <MDBCheckbox name='flexCheck' id='flexCheckDefault' className='mb-4' label='Remember password' />
+                                <MDBBtn size='lg' type="submit">
+                                    Login
+                                </MDBBtn>
+                            </form>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </MDBRow>
+        </MDBContainer>
     );
 }
 

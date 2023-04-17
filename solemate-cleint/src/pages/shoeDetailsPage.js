@@ -81,13 +81,13 @@ function ShoeDetailsPage() {
                 <SendOffer ownerId={shoe.owner} shoe={shoe} />
                 <p>shoe Brand :{shoe.brand}</p>
                 <p>Model: {shoe.model}</p>
-                <p>{shoe.createdAt}</p>
-                <p>{shoe.forSale.toString()}</p>
-                <p>{shoe.description}</p>
-                <p>{shoe.size}</p>
-                <p>{shoe.price}</p>
+                {/* <p>Created At: {shoe.createdAt}</p> */}
+                {/* <p>is the Shoe for sale? {shoe.forSale.toString()}</p> */}
+                <p>Description: {shoe.description}</p>
+                <p>Shoe Size: {shoe.size}</p>
+                <p>Price: {shoe.price} € </p>
                 <Image src={shoe.imageUrl} fluid />
-                {owner && <p>{owner.name}</p>}
+                {owner && <p>Owned by: {owner.name}</p>}
             </div>)}
         </div>
     );

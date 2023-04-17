@@ -1,13 +1,9 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import NavigationBar from '../components/navBar';
-
-
+import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, } from 'mdb-react-ui-kit';
 
 function SignUpPage() {
     const API_URL = 'http://localhost:5005';
@@ -36,40 +32,37 @@ function SignUpPage() {
     }
 
     return (
-        <div style={{
-            display: 'block',
-            width: 700,
-            padding: 30
-        }}>
+        <MDBContainer fluid>
             <NavigationBar />
+            <MDBRow className='d-flex justify-content-center align-items-center vh-100'>
+                <MDBCol col='12'>
+                    <MDBCard className='bg-white my-5 mx-auto' style={{ borderRadius: '1rem', maxWidth: '500px' }}>
+                        <MDBCardBody className='p-5 w-100 d-flex flex-column'>
+                            <h2 className="fw-bold mb-2 text-center">Sign up</h2>
+                            <p className="text-dark-50 mb-3">Please enter your details to create an account!</p>
 
-            <h4>Sign Up Here!</h4>
-            <div hidden={!alertShown}>
-                <Alert key={"danger"} variant={"danger"}>
-                    {alertText}
-                </Alert>
-            </div>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Enter your full name:</Form.Label>
-                    <Form.Control type="text"
-                        placeholder="Enter your full name" onChange={(event) => setName(event.target.value)} />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Enter your email address:</Form.Label>
-                    <Form.Control type="email"
-                        placeholder="Enter your your email address" onChange={(event) => setEmail(event.target.value)} />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Enter your password:</Form.Label>
-                    <Form.Control type="password" placeholder="Enter your password" onChange={(event) => setPassword(event.target.value)} />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Click here to sign up!
-                </Button>
-            </Form>
-            <p>already a user? <a href='/login'>Login Here</a></p>
-        </div>
+                            <div hidden={!alertShown}>
+                                <Alert key={"danger"} variant={"danger"}>
+                                    {alertText}
+                                </Alert>
+                            </div>
+
+                            <form onSubmit={handleSubmit}>
+                                <MDBInput wrapperClass='mb-4 w-100' label='Full name' id='formControlLg' type='text' size="lg" onChange={(event) => setName(event.target.value)} />
+                                <MDBInput wrapperClass='mb-4 w-100' label='Email address' id='formControlLg' type='email' size="lg" onChange={(event) => setEmail(event.target.value)} />
+                                <MDBInput wrapperClass='mb-4 w-100' label='Password' id='formControlLg' type='password' size="lg" onChange={(event) => setPassword(event.target.value)} />
+                                <MDBBtn size='lg' type="submit">
+                                    Sign up
+                                </MDBBtn>
+                            </form>
+                            <p className="mt-3 text-center">
+                                Already a user? <a href='/login'>Login Here</a>
+                            </p>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </MDBRow>
+        </MDBContainer>
     );
 }
 
