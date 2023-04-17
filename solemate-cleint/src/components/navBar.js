@@ -34,6 +34,7 @@ function NavigationBar() {
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/shoe-list">Shoe List</Nav.Link>
                         {isLoggedIn && <Nav.Link href="/add-shoe">Add Shoe</Nav.Link>}
+                        {isLoggedIn && <Nav.Link href="/offers">Your Offers</Nav.Link>}
                         {!isLoggedIn && <NavDropdown title="Join Us" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
                             <NavDropdown.Item href="/login">Log in</NavDropdown.Item>

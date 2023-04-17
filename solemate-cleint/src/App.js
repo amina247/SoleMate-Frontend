@@ -9,6 +9,7 @@ import AddShoePage from "./pages/addShoePage";
 import EditShoePage from "./pages/editShoePage";
 import ShoeListPage from "./pages/shoeListPage";
 import ProtectedRoute from "./components/protectedRoutes";
+import OffersListPage from "./pages/offersListPage";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/shoe-details/:id" element={<ProtectedRoute><ShoeDetailsPage /></ProtectedRoute>} />
         <Route path="/add-shoe" element={<ProtectedRoute><AddShoePage /></ProtectedRoute>} />
         <Route path="/edit-shoe/:id" element={<ProtectedRoute><EditShoePage /></ProtectedRoute>} />
+        <Route path="/offers" element={<ProtectedRoute><OffersListPage /></ProtectedRoute>} />
         <Route path="/shoe-list" element={<ShoeListPage />} />
       </Routes>
     </div>

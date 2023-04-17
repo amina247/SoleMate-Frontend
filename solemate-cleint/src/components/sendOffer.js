@@ -32,7 +32,7 @@ function SendOffer(props) {
         console.log('sending offer of: ', offer);
         const userId = getUser()._id;
 
-        const requestBody = { buyer: userId, seller: shoe.owner, shoe: shoe._id, price: shoe.price };
+        const requestBody = { buyer: userId, seller: shoe.owner, shoe: shoe._id, price: offer };
 
         axios
             .post(`${API_URL}/api/transactions`, requestBody, { headers: { 'authorization': `Bearer ${getToken()}` } })
