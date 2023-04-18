@@ -14,7 +14,7 @@ function LoginPage() {
     const [alertShown, setAlertShown] = useState(false);
     const [alertText, setAlertText] = useState();
 
-    const API_URL = 'http://localhost:5005';
+    const API_URL = process.env.REACT_APP_SERVER;
 
     const handleSubmit = (e) => {
         e.preventDefault();

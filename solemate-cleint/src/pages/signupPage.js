@@ -6,7 +6,7 @@ import NavigationBar from '../components/navBar';
 import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, } from 'mdb-react-ui-kit';
 
 function SignUpPage() {
-    const API_URL = 'http://localhost:5005';
+    const API_URL = process.env.REACT_APP_SERVER;
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [name, setName] = useState();

@@ -10,7 +10,7 @@ function DeleteShoe(props) {
     const [alertShown, setAlertShown] = useState(false);
     const [alertText, setAlertText] = useState();
     const [shown, setShown] = useState();
-    const API_URL = 'http://localhost:5005';
+    const API_URL = process.env.REACT_APP_SERVER;
     const { getUser, getToken } = useContext(AuthContext);
 
     const { ownerId, shoeId } = props;
@@ -19,7 +19,7 @@ function DeleteShoe(props) {
 
     useEffect(() => {
         const userId = getUser()._id;
-        if (userId == ownerId) {
+        if (userId === ownerId) {
             setShown(true);
         }
     }, [ownerId, getUser]);

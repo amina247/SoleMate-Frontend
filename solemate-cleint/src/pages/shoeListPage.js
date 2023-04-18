@@ -11,7 +11,7 @@ function ShoeListPage() {
     const [alertText, setAlertText] = useState();
     const [shoeList, setShoeList] = useState();
 
-    const API_URL = 'http://localhost:5005';
+    const API_URL = process.env.REACT_APP_SERVER;
 
     const navigate = useNavigate();
 

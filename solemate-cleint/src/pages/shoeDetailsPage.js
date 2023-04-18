@@ -17,7 +17,7 @@ function ShoeDetailsPage() {
     const [owner, setOwner] = useState();
     const [updateShown, setUpdateShown] = useState();
 
-    const API_URL = 'http://localhost:5005';
+    const API_URL = process.env.REACT_APP_SERVER;
     const { getToken, getUser } = useContext(AuthContext);
     const { id } = useParams();
 

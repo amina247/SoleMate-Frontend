@@ -12,7 +12,7 @@ function Offer(props) {
     const navigate = useNavigate();
     const { getToken, getUser } = useContext(AuthContext);
 
-    const API_URL = 'http://localhost:5005';
+    const API_URL = process.env.REACT_APP_SERVER;;
 
     const handleAccept = (offerId) => {
         console.log('accept', offerId);

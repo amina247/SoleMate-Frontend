@@ -27,12 +27,12 @@ function NavigationBar() {
     return (
         <Navbar bg="light" expand="lg">
             <Container>
-                <Navbar.Brand href="/">My Website</Navbar.Brand>
+                <Navbar.Brand href="/">SoleMate</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/shoe-list">Shoe List</Nav.Link>
+                        <Nav.Link href="/shoe-list">Shoe Collection</Nav.Link>
                         {isLoggedIn && <Nav.Link href="/add-shoe">Add Shoe</Nav.Link>}
                         {isLoggedIn && <Nav.Link href="/offers">Your Offers</Nav.Link>}
                         {!isLoggedIn && <NavDropdown title="Join Us" id="basic-nav-dropdown">
