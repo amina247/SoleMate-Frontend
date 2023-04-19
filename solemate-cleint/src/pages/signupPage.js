@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import NavigationBar from '../components/navBar';
-import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, } from 'mdb-react-ui-kit';
+import Button from 'react-bootstrap/Button';
 
 function SignUpPage() {
     const API_URL = process.env.REACT_APP_SERVER;
@@ -51,9 +52,9 @@ function SignUpPage() {
                                 <MDBInput wrapperClass='mb-4 w-100' label='Full name' id='formControlLg' type='text' size="lg" onChange={(event) => setName(event.target.value)} />
                                 <MDBInput wrapperClass='mb-4 w-100' label='Email address' id='formControlLg' type='email' size="lg" onChange={(event) => setEmail(event.target.value)} />
                                 <MDBInput wrapperClass='mb-4 w-100' label='Password' id='formControlLg' type='password' size="lg" onChange={(event) => setPassword(event.target.value)} />
-                                <MDBBtn size='lg' type="submit">
+                                <Button size='lg' type="submit">
                                     Sign up
-                                </MDBBtn>
+                                </Button>
                             </form>
                             <p className="mt-3 text-center">
                                 Already a user? <a href='/login'>Login Here</a>
