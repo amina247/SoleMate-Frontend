@@ -4,7 +4,8 @@ import { AuthContext } from "../context/auth.context";
 import { useNavigate } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import NavigationBar from '../components/navBar';
-import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
+import Button from 'react-bootstrap/Button';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 
 function LoginPage() {
     const { storeToken } = useContext(AuthContext);
@@ -15,6 +16,8 @@ function LoginPage() {
     const [alertText, setAlertText] = useState();
 
     const API_URL = process.env.REACT_APP_SERVER;
+    console.log('API URL:', process.env.REACT_APP_SERVER);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -46,7 +49,7 @@ function LoginPage() {
                     <MDBCard className='bg-white my-5 mx-auto' style={{ borderRadius: '1rem', maxWidth: '500px' }}>
                         <MDBCardBody className='p-5 w-100 d-flex flex-column'>
                             <h2 className="fw-bold mb-2 text-center">Login</h2>
-                            <p className="text-dark-50 mb-3">Please enter your login and password!</p>
+                            <p className="text-dark-50 mb-3">Please enter your email and password!</p>
 
                             <div hidden={!alertShown}>
                                 <Alert key={"danger"} variant={"danger"}>
@@ -58,9 +61,9 @@ function LoginPage() {
                                 <MDBInput wrapperClass='mb-4 w-100' label='Email address' id='formControlLg' type='email' size="lg" onChange={(event) => setEmail(event.target.value)} />
                                 <MDBInput wrapperClass='mb-4 w-100' label='Password' id='formControlLg' type='password' size="lg" onChange={(event) => setPassword(event.target.value)} />
                                 <MDBCheckbox name='flexCheck' id='flexCheckDefault' className='mb-4' label='Remember password' />
-                                <MDBBtn size='lg' type="submit">
+                                <Button type="submit">
                                     Login
-                                </MDBBtn>
+                                </Button>
                             </form>
                         </MDBCardBody>
                     </MDBCard>

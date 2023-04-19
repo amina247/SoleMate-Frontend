@@ -70,7 +70,7 @@ function SendOffer(props) {
                     <Form.Control type="number"
                         onChange={(event) => setOffer(event.target.value)} />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="secondary" type="submit" className="mt-2">
                     Send Offer
                 </Button>
             </Form>

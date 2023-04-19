@@ -5,6 +5,8 @@ import Offer from '../components/offer';
 
 import axios from "axios";
 import Alert from 'react-bootstrap/Alert';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText } from 'mdb-react-ui-kit';
+
 
 function OffersListPage() {
 
@@ -33,25 +35,36 @@ function OffersListPage() {
 
     }, []);
 
-    return (
 
+    return (
         <div>
             <NavigationBar />
-            <h4>your Offers:</h4>
+            <h1 className="text-center my-4">Your Offers</h1>
             <div hidden={!alertShown}>
                 <Alert key={"danger"} variant={"danger"}>
                     {alertText}
                 </Alert>
             </div>
 
-            {offersList && (<div>
-                {offersList.map((item) => <Offer offer={item} />)}
-            </div>)}
-
+            <MDBContainer>
+                <MDBRow>
+                    {offersList && offersList.map((item) => (
+                        <MDBCol key={item._id} className="col-lg-6 col-md-6 mb-4">
+                            <MDBCard>
+                                <MDBCardBody>
+                                    <MDBCardTitle>{item.shoe.brand}</MDBCardTitle>
+                                    <MDBCardText>
+                                        Model: {item.shoe.model} <br />
+                                        Description: {item.shoe.description}
+                                    </MDBCardText>
+                                    <Offer offer={item} />
+                                </MDBCardBody>
+                            </MDBCard>
+                        </MDBCol>
+                    ))}
+                </MDBRow>
+            </MDBContainer>
         </div>
-
-
-
     )
 };
 

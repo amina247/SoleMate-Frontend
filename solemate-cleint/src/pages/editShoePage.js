@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import Image from 'react-bootstrap/Image';
+import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 
 function EditShoePage() {
     const [shoe, setShoe] = useState();
@@ -89,68 +90,72 @@ function EditShoePage() {
 
 
     return (
-        <div style={{
-            display: 'block',
-            width: 700,
-            padding: 30
-        }}>
+        <div>
             <NavigationBar />
 
-            <h4>Edit Shoe</h4>
-            <div hidden={!alertShown}>
-                <Alert key={"danger"} variant={"danger"}>
-                    {alertText}
-                </Alert>
-            </div>
+            <MDBContainer>
+                <MDBRow className="justify-content-center">
+                    <MDBCol lg="8" md="10">
+                        <div className="mt-4">
+                            <h4 className="text-center mb-4">Edit Shoe</h4>
+                            <div className="card p-4">
+                                <div hidden={!alertShown}>
+                                    <Alert key={"danger"} variant={"danger"}>
+                                        {alertText}
+                                    </Alert>
+                                </div>
 
-            {shoe &&
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group>
-                        <Form.Label>Image:</Form.Label>
-                        <Button variant="primary" onClick={() => widgetRef.current.open()}>
-                            Upload
-                        </Button>
-                    </Form.Group>
-                    <Image src={imageUrl} fluid />
-                    <Form.Group>
-                        <Form.Label>For Sale:</Form.Label>
-                        <Form.Check type="checkbox" checked={forSale}
-                            onChange={() => setForSale(!forSale)} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Brand:</Form.Label>
-                        <Form.Control type="text"
-                            value={brand} onChange={(event) => setBrand(event.target.value)} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Model:</Form.Label>
-                        <Form.Control type="text"
-                            value={model} onChange={(event) => setModel(event.target.value)} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Description:</Form.Label>
-                        <Form.Control type="text"
-                            value={description} onChange={(event) => setDescription(event.target.value)} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Size:</Form.Label>
-                        <Form.Control type="text"
-                            value={size} onChange={(event) => setSize(event.target.value)} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Price:</Form.Label>
-                        <Form.Control type="text"
-                            value={price} onChange={(event) => setPrice(event.target.value)} />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Save Changes
-                    </Button>
-                </Form>
-            }
+                                {shoe &&
+                                    <Form onSubmit={handleSubmit} className="mt-3">
+                                        <Form.Group>
+                                            <Form.Label>Image:</Form.Label>
+                                            <Button variant="secondary" onClick={() => widgetRef.current.open()} className="ml-2">
+                                                Upload
+                                            </Button>
+                                        </Form.Group>
+                                        <Image src={imageUrl} fluid className="my-3" />
+                                        <Form.Group>
+                                            <Form.Label>For Sale:</Form.Label>
+                                            <Form.Check type="checkbox" checked={forSale}
+                                                onChange={() => setForSale(!forSale)} className="ml-2" />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Brand:</Form.Label>
+                                            <Form.Control type="text"
+                                                value={brand} onChange={(event) => setBrand(event.target.value)} />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Model:</Form.Label>
+                                            <Form.Control type="text"
+                                                value={model} onChange={(event) => setModel(event.target.value)} />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Description:</Form.Label>
+                                            <Form.Control type="text"
+                                                value={description} onChange={(event) => setDescription(event.target.value)} />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Size:</Form.Label>
+                                            <Form.Control type="text"
+                                                value={size} onChange={(event) => setSize(event.target.value)} />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Price:</Form.Label>
+                                            <Form.Control type="text"
+                                                value={price} onChange={(event) => setPrice(event.target.value)} />
+                                        </Form.Group>
+                                        <Button variant="secondary" type="submit" className="w-100 mt-3">
+                                            Save Changes
+                                        </Button>
+                                    </Form>
+                                }
+                            </div>
+                        </div>
+                    </MDBCol>
+                </MDBRow>
+            </MDBContainer>
         </div>
     );
-
-
 }
 
 export default EditShoePage;

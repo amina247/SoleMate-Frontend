@@ -8,6 +8,7 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import NavigationBar from "../components/navBar";
 import SendOffer from "../components/sendOffer";
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText } from 'mdb-react-ui-kit';
 
 
 function ShoeDetailsPage() {
@@ -65,32 +66,46 @@ function ShoeDetailsPage() {
         <div>
             <NavigationBar />
 
-            <h1>Shoe Details Page</h1>
-            <div hidden={!alertShown}>
-                <Alert key={"danger"} variant={"danger"}>
-                    {alertText}
-                </Alert>
-            </div>
-            {shoe && (<div>
-                <div hidden={!updateShown}>
-                    <Button variant="primary" onClick={handleUpdateClick}>
-                        Update Shoe
-                    </Button>
-                </div>
-                <DeleteShoe ownerId={shoe.owner} shoeId={shoe._id} />
-                <SendOffer ownerId={shoe.owner} shoe={shoe} />
-                <p>shoe Brand :{shoe.brand}</p>
-                <p>Model: {shoe.model}</p>
-                {/* <p>Created At: {shoe.createdAt}</p> */}
-                {/* <p>is the Shoe for sale? {shoe.forSale.toString()}</p> */}
-                <p>Description: {shoe.description}</p>
-                <p>Shoe Size: {shoe.size}</p>
-                <p>Price: {shoe.price} € </p>
-                <Image src={shoe.imageUrl} fluid />
-                {owner && <p>Owned by: {owner.name}</p>}
-            </div>)}
+            <MDBContainer>
+                <MDBRow className="justify-content-center">
+                    <MDBCol className="col-lg-8 col-md-10 col-sm-12">
+                        <MDBCard className="my-5">
+                            <MDBCardBody>
+                                <MDBCardTitle className="text-center">Shoe Details</MDBCardTitle>
+                                <div hidden={!alertShown}>
+                                    <Alert key={"danger"} variant={"danger"}>
+                                        {alertText}
+                                    </Alert>
+                                </div>
+                                {shoe && (
+                                    <div>
+                                        <MDBCardText><strong>Shoe Brand:</strong> {shoe.brand}</MDBCardText>
+                                        <MDBCardText><strong>Model:</strong> {shoe.model}</MDBCardText>
+                                        <MDBCardText><strong>Description:</strong> {shoe.description}</MDBCardText>
+                                        <MDBCardText><strong>Shoe Size:</strong> {shoe.size}</MDBCardText>
+                                        <MDBCardText><strong>Price:</strong> {shoe.price} €</MDBCardText>
+                                        <Image src={shoe.imageUrl} fluid className="mb-3" />
+                                        {owner && <MDBCardText><strong>Owned by:</strong> {owner.name}</MDBCardText>}
+                                        <div className="d-flex justify-content-end">
+                                            <div hidden={!updateShown}>
+                                                <Button
+                                                    variant="outline-secondary"
+                                                    onClick={handleUpdateClick}
+                                                    className="me-3 mb-3"> Update Shoe </Button>
+                                            </div>
+                                            <DeleteShoe ownerId={shoe.owner} shoeId={shoe._id} />
+                                        </div>
+                                        <SendOffer ownerId={shoe.owner} shoe={shoe} />
+                                    </div>
+                                )}
+                            </MDBCardBody>
+                        </MDBCard>
+                    </MDBCol>
+                </MDBRow>
+            </MDBContainer>
         </div>
     );
+
 }
 
 export default ShoeDetailsPage;

@@ -35,15 +35,15 @@ function Offer(props) {
         <div>
             <Image src={offer.shoe.imageUrl} fluid onClick={() => { navigate(`/shoe-details/${offer.shoe._id}`) }} />
             <p>shoe Brand :{offer.shoe.brand}</p>
-            <p>offered price: {offer.price}</p>
+            <p>offered price: {offer.price} € </p>
             <div hidden={!emailShown}>
                 <p>you can contact the buyer with Email: {offer.buyer.email} </p>
             </div>
 
-
-            <Button variant="primary" onClick={() => { handleAccept(offer._id) }}>
+            <Button variant="secondary"
+                onClick={() => { handleAccept(offer._id) }} className="me-3">
                 Accept Offer </Button>
-            <Button variant="primary" type="submit" onClick={() => { handleReject(offer._id) }}>
+            <Button variant="danger" type="submit" onClick={() => { handleReject(offer._id) }}>
                 Reject Offer
             </Button>
         </div>

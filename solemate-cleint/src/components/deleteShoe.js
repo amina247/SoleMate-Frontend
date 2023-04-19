@@ -49,7 +49,7 @@ function DeleteShoe(props) {
                     {alertText}
                 </Alert>
             </div>
-            <Button variant="primary" onClick={handleClick}>
+            <Button variant="danger" onClick={handleClick}>
                 Delete Shoe
             </Button>
         </div>
