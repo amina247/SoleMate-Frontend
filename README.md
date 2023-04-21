@@ -2,6 +2,14 @@
 
 SoleMate is a website for shoe enthusiasts to manage their shoe collections, buy, and sell shoes. Users can create accounts, log in, add, edit, and delete shoes from their collections. They can also list their shoes for sale and receive offers from other users.
 
+
+
+## Related Repositories
+
+- [SoleMate Backend](https://github.com/amina247/SoleMate-Backend) - Backend server for SoleMate
+
+
+
 ## Demo
 
 [https://solemate7.netlify.app/](https://solemate7.netlify.app/)
